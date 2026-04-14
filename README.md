@@ -1,10 +1,6 @@
 # SmartEM-Processing-Workflows
 
-## Overview
-
-**SmartEm-Processing-Workflows** is a Dockerized, step-by-step processing pipeline designed to take electron microscopy (EM) images from SmartEM and transform them into connectome-ready outputs. The goal of this repository is to provide a reproducible, modular, and scalable framework for EM data processing.
-
----
+A Dockerized, step-by-step processing pipeline designed to take electron microscopy (EM) images from SmartEM and transform them into connectome-ready outputs using a reproducible, modular, and scalable approach.
 
 ## Key Features
 
@@ -20,8 +16,6 @@ Tools included:
 * Synapse detection
 * Conversion to precomputed format
 * Upload to the cloud
-
----
 
 ## Getting Started
 
@@ -47,7 +41,6 @@ cd dockerfiles/<example-step>
 docker build -t smartem/<example-step>:latest .
 ```
 
----
 
 ## Running Workflows
 
@@ -66,7 +59,6 @@ Each workflow will document:
 * Expected outputs
 * Configuration parameters
 
---
 
 ## Contact
 
