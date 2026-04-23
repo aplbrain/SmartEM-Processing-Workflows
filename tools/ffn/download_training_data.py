@@ -67,9 +67,10 @@ print(f"Image stddev: {image_stddev:.4f}")
 
 # ---------------------- Save to HDF5 ----------------------
 
+# Transpose data before saving, as FFN expects ZYX
 def save_h5(data, filepath, dataset_name):
     with h5py.File(filepath, 'w') as f:
-        f.create_dataset(dataset_name, data=data, compression='gzip')
+        f.create_dataset(dataset_name, data=np.transpose(data), compression='gzip')
     print(f"Saved {dataset_name} to {filepath}")
 
 

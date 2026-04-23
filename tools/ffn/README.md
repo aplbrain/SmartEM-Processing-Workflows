@@ -5,7 +5,11 @@ This Dockerfile is based on the [APL fork](https://github.com/aplbrain/ffn) of G
 ## Requirements
 * Hardware with one or more Nvidia GPUs
 * Docker
-* Aligned EM image volume (TODO: add formats)
+* A working directory
+* An aligned EM image volume. 
+  * FFN expects a 3D H5 file
+  * In `example_working_dir/meirovitch2025_data`, we provide a pre-downloaded test volume
+  * We also provide a script `download_training_data.py` for downloading a precomputed volume and converting to the correct format
 
 ## Setup
 1. Ensure that Nvidia drivers are installed on the machine so that the GPU can be used. If nothing is printed from the following command, you will need to install the appropriate drivers for your OS.
@@ -32,7 +36,7 @@ docker build -t ffn:latest .
 Coming soon
 
 ## Inference
-1. Write a configuration file. We have provided an example at `inference_config_example.pbtxt`. You will at minimum need to change the paths within this file to point to your working directory.
+1. Write a configuration file. We have provided an example at `inference_config_example.pbtxt`. You will at minimum need to change the paths within this file to point to those in your working directory. We recommend mounting the working directory to the root of the docker container (as shown in the following command) and have done so in our example.
 
     More examples are found in the [ffn configs directory](https://github.com/aplbrain/ffn/tree/master/configs) and guidance is found in the [ffn docs](https://github.com/aplbrain/ffn/blob/master/doc/manual.md#segmentation-inference).
 
