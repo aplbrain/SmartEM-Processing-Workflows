@@ -3,15 +3,24 @@ import h5py
 from cloudvolume import CloudVolume
 import os
 
+# This file serves as an example for downloading a chunk of data for testing the FFN image
+# Start by filling out the Configuration section
+# Then run:
+#   python download_training_data.py
+
 # ---------------------- Configuration ----------------------
 
-# Replace these with your actual S3 paths
+# Replace these with your paths
+# s3://path/to/em and s3://path/to/segmentation
+# This can also be a local path or cloud path on a different provider
+# See cloud-volume docs for more examples
 IMAGE_PRECOMP_PATH = 's3://bossdb-open-data/meirovitch2025/composite_dwell_time/composite_em'
 LABEL_PRECOMP_PATH = 's3://bossdb-open-data/meirovitch2025/composite_dwell_time/composite_3dseg'
 
 # Desired bounding box in XYZ
+# This example is small for demo purposes
+# FFN recommends 150 Mvx of annotated ground truth for training
 CROP_SIZE_XYZ = [700, 700, 94]  # in voxels
-
 # Define the start of your bounding box (e.g., (0, 0, 0) or custom offset)
 BBOX_START_XYZ = [21224/2, 13843/2, 0]
 

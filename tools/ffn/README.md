@@ -3,7 +3,7 @@
 This Dockerfile is based on the [APL fork](https://github.com/aplbrain/ffn) of Google's flood-filling networks segmentation algorithm.
 
 ## Requirements
-* Hardware with one or more Nvidia GPUs
+* Hardware or cloud resources with one or more Nvidia GPUs
 * Docker
 * A working directory
 * An aligned EM image volume. 
