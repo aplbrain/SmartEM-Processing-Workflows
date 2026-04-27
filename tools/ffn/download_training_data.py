@@ -58,16 +58,6 @@ label_data = load_cloudvolume_data(LABEL_PRECOMP_PATH, BBOX_START_XYZ, CROP_SIZE
 
 # ---------------------- Compute Stats ----------------------
 
-# Clamp and scale image data before casting to uint8
-#image_data_clamped = np.clip(image_data, UINT16_MIN, UINT16_MAX)
-
-# Scale to [0, 255]
-#image_data_scaled = (image_data_clamped / (UINT16_MAX - UINT16_MIN)) * 255.0
-
-# Cast to uint8
-#image_data_uint8 = image_data_scaled.astype(np.uint8)
-
-
 image_mean = float(np.mean(image_data))
 image_stddev = float(np.std(image_data))
 
