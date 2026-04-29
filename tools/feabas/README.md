@@ -21,13 +21,13 @@ sudo docker build . -t feabas:latest
 ## Running
 Below are linked the documentation sections for running stitching and alignment. Follow the instructions in each section to accomplish the respective task. To run with Docker, prepend each command with the following. 
 ```
-sudo docker run feabas -v /path/to/local/working/dir:/working_dir
+docker run feabas -v /path/to/local/working/dir:/working_dir
 ```
 The final argument will mount the working directory you created into the Docker container at container path `/working_dir`. You will need to ensure that your configuration files and stitch coord files reflect the paths inside the Docker container, not the paths on your local machine.
 
 So, the first command would be:
 ```
-sudo docker run feabas -v /path/to/local/working/dir:/working_dir \
+docker run feabas -v /path/to/local/working/dir:/working_dir \
 python scripts/stitch_main.py --mode matching
 ```
 And so on.
