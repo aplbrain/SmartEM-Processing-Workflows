@@ -8,7 +8,7 @@ MODEL:
   ARCHITECTURE: unet_plus_3d
   BLOCK_TYPE: residual_se
 DATASET:
-  OUTPUT_PATH: /example_working_dir/synapse_unet_outputs/
+  OUTPUT_PATH: /example_working_dir/meirovitch2025_data/synapse_unet_outputs/
 INFERENCE:
   OUTPUT_ACT: ["sigmoid"]
-  OUTPUT_PATH: /example_working_dir/synapse_unet_outputs/
+  OUTPUT_PATH: /example_working_dir/meirovitch2025_data/synapse_unet_outputs/

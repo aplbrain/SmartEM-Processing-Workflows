@@ -12,8 +12,8 @@ MODEL:
 DATASET:
   IMAGE_NAME: nk_mouse_gt1_em.h5
   LABEL_NAME: nk_mouse_gt1_synapse.h5
-  INPUT_PATH: /example_working_dir/path/to/data/
-  OUTPUT_PATH: /example_working_dir/synapse_unet_outputs/
+  INPUT_PATH: /example_working_dir/meirovitch2025_data/
+  OUTPUT_PATH: /example_working_dir/meirovitch2025_data/synapse_unet_outputs/
   PAD_SIZE: [0, 32, 32]
   REJECT_SAMPLING:
     SIZE_THRES: 1000
@@ -30,8 +30,8 @@ INFERENCE:
   INPUT_SIZE: [5, 257, 257]
   OUTPUT_SIZE: [5, 257, 257]
   OUTPUT_ACT: ["sigmoid"]
-  IMAGE_NAME: /example_working_dir/nk_mouse_gt2_em_padded.h5
-  OUTPUT_PATH: /example_working_dir/synapse_unet_outputs/
+  IMAGE_NAME: /example_working_dir/meirovitch2025_data/image_volume.h5
+  OUTPUT_PATH: /example_working_dir/meirovitch2025_data/synapse_unet_outputs/
   OUTPUT_NAME: result.h5
   DO_SINGLY: False
   PAD_SIZE: [0, 32, 32]

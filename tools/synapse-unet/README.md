@@ -33,11 +33,19 @@ Coming soon
 
 ## Inference
 
-1. Run inference on a single block.
+1. Copy the pre-trained weights and yaml config files from this directory into your working directory. We recommend mounting the working directory to the root of the Docker container (as shown in the following command) and have done so in our example. You will need to open the yaml config files and update the paths to route within the Docker container, not on your local machine.
+
+2. Run inference on a single block.
 ```
 docker run --rm \
 --gpus all \
--v /path/to/working_dir:/working_dir \
-ffn \
-python run_inference.py   --inference_request="$(cat inference_config_example.pbtxt)"   --bounding_box 'start { x:0 y:0 z:0 } size { x:250 y:250 z:250 }'
+-v /path/to/working/dir:/working_dir \
+synapse-unet \
+python -u /home/pytc/pytorch_connectomics/scripts/main.py \
+--config-base /working_dir/nk_mouse.yaml \
+--config-file /working_dir/nk_mouse_unet.yaml \
+--inference \
+--checkpoint /working_dir/nk_mouse_synapse_network.tar
 ```
+
+3. Use the provided notebook `view_data.ipynb` to view the results.
