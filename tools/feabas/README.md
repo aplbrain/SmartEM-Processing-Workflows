@@ -9,9 +9,9 @@ This directory containerizes [FEABAS](https://github.com/YuelongWu/feabas), the 
 ## Setup
 All the setup that is required is to create a working directory which contains a specific directory structure with configuration files and your tiled images. 
 
-Here we have included the configuration files we used to stitch and align the SmartEM mouse dataset.
+We recommend following the instructions in the [FEABAS readme](https://github.com/YuelongWu/feabas?tab=readme-ov-file#preparation) to determine how to structure the working directory and how to customize the configuration files (default ones are included in this directory). Generating the stitch coordinate files will likely require the most work. You should create the working directory on the local machine and mount it into the container at runtime so that the results are persisted.
 
-We recommend following the instructions in the [FEABAS readme](https://github.com/YuelongWu/feabas?tab=readme-ov-file#preparation) to determine how to structure the working directory and how to customize the configuration files. Generating the stitch coordinate files will likely require the most work. You should create the working directory on the local machine and mount it into the container at runtime so that the results are persisted.
+In `example_working_dir/meirovitch2025` we have set up an example which already includes the `configs/` that were used for the SmartEM paper and `stitch/` directory for a subset of SmartEM data, so that the container is immediately testable.
 
 Finally, build the Docker container. 
 ```
@@ -21,13 +21,16 @@ sudo docker build . -t feabas:latest
 ## Running
 Below are linked the documentation sections for running stitching and alignment. Follow the instructions in each section to accomplish the respective task. To run with Docker, prepend each command with the following. 
 ```
-docker run feabas -v /path/to/local/working/dir:/working_dir
+docker run -v /path/to/local/working/dir:/working_dir -v /path/to/local/working/dir/configs/general_configs.yaml:/opt/feabas/configs/general_configs.yaml \feabas
 ```
 The final argument will mount the working directory you created into the Docker container at container path `/working_dir`. You will need to ensure that your configuration files and stitch coord files reflect the paths inside the Docker container, not the paths on your local machine.
 
 So, the first command would be:
 ```
-docker run feabas -v /path/to/local/working/dir:/working_dir \
+docker run -v /path/to/local/working/dir:/working_dir \
+-v /path/to/local/working_dir:/working_dir
+-v /path/to/local/working_dir/configs:/opt/feabas/configs \
+feabas \
 python scripts/stitch_main.py --mode matching
 ```
 And so on.
@@ -39,4 +42,10 @@ https://github.com/YuelongWu/feabas?tab=readme-ov-file#stitching
 https://github.com/YuelongWu/feabas?tab=readme-ov-file#thumbnail-alignment
 
 ### Fine Alignment
+When you get to the rendering step, choose `--tsr` instead of `--rendering`.
+
 https://github.com/YuelongWu/feabas?tab=readme-ov-file#fine-alignment
+
+## Visualizing
+
+Use the included notebook `view_data.ipynb` to view the data.
