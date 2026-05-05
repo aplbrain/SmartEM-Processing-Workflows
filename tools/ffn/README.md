@@ -25,7 +25,11 @@ nvidia-ctk runtime configure --runtime=docker
 systemctl restart docker
 ```
 
-4. Build the Docker container.
+4. Pull the Docker container.
+```
+docker pull public.ecr.aws/jhuapl-bossdb/ffn:latest
+```
+Alternatively, build it from source.
 ```
 docker build -t ffn:latest .
 ```
@@ -36,7 +40,7 @@ docker build -t ffn:latest .
 Coming soon
 
 ## Inference
-1. Write a configuration file. We have provided an example at `inference_config_example.pbtxt`. You will at minimum need to change the paths within this file to point to those in your working directory. We recommend mounting the working directory to the root of the docker container (as shown in the following command) and have done so in our example.
+1. Write a configuration file. We have provided an example at `inference_config_example.pbtxt`. You will at minimum need to change the paths within this file to point to those in your working directory. We recommend mounting the working directory to the root of the Docker container (as shown in the following command) and have done so in our example.
 
     More examples are found in the [ffn configs directory](https://github.com/aplbrain/ffn/tree/master/configs) and guidance is found in the [ffn docs](https://github.com/aplbrain/ffn/blob/master/doc/manual.md#segmentation-inference).
 
@@ -48,3 +52,5 @@ docker run --rm \
 ffn \
 python run_inference.py   --inference_request="$(cat inference_config_example.pbtxt)"   --bounding_box 'start { x:0 y:0 z:0 } size { x:250 y:250 z:250 }'
 ```
+
+3. Use the provided notebook `view_data.ipynb` to inspect the results.
