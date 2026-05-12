@@ -11,7 +11,13 @@ All the setup that is required is to create a working directory which contains a
 
 We recommend following the instructions in the [FEABAS readme](https://github.com/YuelongWu/feabas?tab=readme-ov-file#preparation) to determine how to structure the working directory and how to customize the configuration files (default ones are included in this directory). Generating the stitch coordinate files will likely require the most work. You should create the working directory on the local machine and mount it into the container at runtime so that the results are persisted.
 
-In `example_working_dir/meirovitch2025` we have set up an example which already includes the `configs/` that were used for the SmartEM paper and `stitch/` directory for a subset of SmartEM data, so that the container is immediately testable.
+In `example_working_dir/meirovitch2025` we have set up an example which already includes the `configs/` that were used for the SmartEM paper and `stitch/` directory for a subset of SmartEM data. However, the subsetted data (~500 MB) still remains to be downloaded. 
+
+```
+cd SmartEM-Processing-Workflows/example_working_dir/meirovitch2025
+wget https://s3.us-east-1.amazonaws.com/bossdb-open-data/meirovitch2025/workflow_example_data/tiles.tar.gz
+tar -xvzf tiles.tar.gz
+```
 
 Finally, build the Docker container. 
 ```
@@ -48,4 +54,9 @@ https://github.com/YuelongWu/feabas?tab=readme-ov-file#fine-alignment
 
 ## Visualizing
 
-Use the included notebook `view_data.ipynb` to view the data.
+Use the included notebook `view_data.ipynb` to view the data. As a shortcut, we have uploaded the result of running this workflow to the cloud.
+```
+cd SmartEM-Processing-Workflows/example_working_dir/meirovitch2025
+wget https://s3.us-east-1.amazonaws.com/bossdb-open-data/meirovitch2025/workflow_example_data/aligned_tensorstore.tar.gz
+tar -xvzf aligned_tensorstore.tar.gz
+```

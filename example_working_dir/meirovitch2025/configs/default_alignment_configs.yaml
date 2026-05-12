@@ -34,7 +34,7 @@ optimization:
         num_workers: 16
         start_loc: M    # starting location of the optimization. L: left, R: right, M: start from middle and move in both directions
         window_size: 64 # the width of the sliding window
-        buffer_size: 16 # the number of overlapping sections to re-optimize when window is moved, to minimize potential fringe effects.
+        buffer_size: 16 # the number of overlapping sections to re-optimize when window is moved, to minimize potential fringe effects
         residue_mode: huber
         residue_len: 20 # matching points with error larger than this width will be weakened in the second round of mesh relaxation
         elastic_params:
