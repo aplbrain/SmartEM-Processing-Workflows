@@ -1,2 +1,0 @@
-example_working_dir/meirovitch2025/aligned_tensorstore.tar.gz filter=lfs diff=lfs merge=lfs -text
-example_working_dir/meirovitch2025/tiles.tar.gz filter=lfs diff=lfs merge=lfs -text
