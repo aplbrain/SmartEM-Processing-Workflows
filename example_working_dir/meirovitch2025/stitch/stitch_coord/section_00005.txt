@@ -1,0 +1,19 @@
+{ROOT_DIR}	/meirovitch2025/tiles/location_005
+{RESOLUTION}	4
+{TILE_SIZE}	1768	2048
+loc_005_yi_10_xi_10.png	3277	2829
+loc_005_yi_10_xi_11.png	4915	2829
+loc_005_yi_10_xi_8.png	0	2829
+loc_005_yi_10_xi_9.png	1638	2829
+loc_005_yi_11_xi_10.png	3277	4243
+loc_005_yi_11_xi_11.png	4915	4243
+loc_005_yi_11_xi_8.png	0	4243
+loc_005_yi_11_xi_9.png	1638	4243
+loc_005_yi_8_xi_10.png	3277	0
+loc_005_yi_8_xi_11.png	4915	0
+loc_005_yi_8_xi_8.png	0	0
+loc_005_yi_8_xi_9.png	1638	0
+loc_005_yi_9_xi_10.png	3277	1414
+loc_005_yi_9_xi_11.png	4915	1414
+loc_005_yi_9_xi_8.png	0	1414
+loc_005_yi_9_xi_9.png	1638	1414
