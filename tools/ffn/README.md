@@ -54,3 +54,8 @@ python run_inference.py   --inference_request="$(cat inference_config_example.pb
 ```
 
 3. Use the provided notebook `view_data.ipynb` to inspect the results.
+```
+uv sync
+uv run --with jupyter jupyter lab
+```
+Then open the notebook, and for the kernel, use "Existing Jupyter Server" with the URL that was printed in the terminal. It should be formatted as http://localhost:8888/lab?token=<token>.

@@ -7,7 +7,9 @@ This Dockerfile is based on PyTorch Connectomics, commit [f29a6bf](https://githu
 * Docker
 * A working directory
 * An aligned EM image volume, and labeled training data
-  * TODO: Input format unknown...
+  * PyTorch Connectomics expects a 3D H5 file
+  * In `example_working_dir/meirovitch2025`, we provide a pre-downloaded test volume
+  * We also provide a script `download_training_data.py` for downloading a precomputed volume and converting to the correct format
 
 ## Setup
 1. Ensure that Nvidia drivers are installed on the machine so that the GPU can be used. If nothing is printed from the following command, you will need to install the appropriate drivers for your OS.
@@ -28,12 +30,14 @@ systemctl restart docker
 docker build -t synapse-unet:latest .
 ```
 
+5. Copy images to a working directory. We have provided an example image at `example_working_dir/meirovitch2025/image_volume.h5`.
+
 ## Training
 Coming soon
 
 ## Inference
 
-1. Copy the pre-trained weights and yaml config files from this directory into your working directory. We recommend mounting the working directory to the root of the Docker container (as shown in the following command) and have done so in our example. You will need to open the yaml config files and update the paths to route within the Docker container, not on your local machine.
+1. Pre-trained weights and yaml config files can be found in `example_working_dir/meirovitch2025/synapse_unet_configs`. We recommend mounting the working directory to the root of the Docker container (as shown in the following command) and have done so in our example. You will need to open the yaml config files and update the paths to route within the Docker container, not on your local machine.
 
 2. Run inference on a single block.
 ```
@@ -49,3 +53,8 @@ python -u /home/pytc/pytorch_connectomics/scripts/main.py \
 ```
 
 3. Use the provided notebook `view_data.ipynb` to view the results.
+```
+uv sync
+uv run --with jupyter jupyter lab
+```
+Then open the notebook, and for the kernel, use "Existing Jupyter Server" with the URL that was printed in the terminal. It should be formatted as http://localhost:8888/lab?token=<token>.

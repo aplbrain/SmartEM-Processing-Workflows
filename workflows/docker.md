@@ -61,4 +61,12 @@ Then, follow the instructions in the [tools/ffn README](https://github.com/aplbr
 To use the `tools/ffn/view_data.ipynb` notebook to view results, you will need the same jupyter setup as in the FEABAS section above.
 
 ## Synapse detection
+If you haven't already, you will need to convert the precomputed output of FEABAS to an H5 file.
+```
+cd tools/ffn
+uv run convert_to_h5.py
+```
 
+Then, follow the instructions in the [tools/synapse-unet README](https://github.com/aplbrain/SmartEM-Processing-Workflows/blob/main/tools/synapse-unet/README.md) to run inference on the volume. You will need to edit line 33 of `example_working_dir/synapse_unet_configs/nk_mouse.yaml` to point to `/example_data/meirovitch2025/aligned_tensorstore.h5`.
+
+To use the `tools/synapse-unet/view_data.ipynb` notebook to view results, you will need the same jupyter setup as in the FEABAS section above.
