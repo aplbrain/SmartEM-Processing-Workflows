@@ -8,7 +8,7 @@ This Dockerfile is based on the [APL fork](https://github.com/aplbrain/ffn) of G
 * A working directory
 * An aligned EM image volume. 
   * FFN expects a 3D H5 file
-  * In `example_working_dir/meirovitch2025_data`, we provide a pre-downloaded test volume
+  * In `example_working_dir/meirovitch2025`, we provide a pre-downloaded test volume
   * We also provide a script `download_training_data.py` for downloading a precomputed volume and converting to the correct format
 
 ## Setup
@@ -34,7 +34,7 @@ Alternatively, build it from source.
 docker build -t ffn:latest .
 ```
 
-5. Copy images to a working directory. We have provided an example image in `example_working_dir/meirovitch2025_data`
+5. Copy images to a working directory. We have provided an example image at `example_working_dir/meirovitch2025/image_volume.h5`.
 
 ## Training
 Coming soon
@@ -54,3 +54,8 @@ python run_inference.py   --inference_request="$(cat inference_config_example.pb
 ```
 
 3. Use the provided notebook `view_data.ipynb` to inspect the results.
+```
+uv sync
+uv run --with jupyter jupyter lab
+```
+Then open the notebook, and for the kernel, use "Existing Jupyter Server" with the URL that was printed in the terminal. It should be formatted as http://localhost:8888/lab?token=<token>.

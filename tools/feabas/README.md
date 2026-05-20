@@ -54,7 +54,14 @@ https://github.com/YuelongWu/feabas?tab=readme-ov-file#fine-alignment
 
 ## Visualizing
 
-Use the included notebook `view_data.ipynb` to view the data. As a shortcut, we have uploaded the result of running this workflow to the cloud.
+Use the included notebook `view_data.ipynb` to view the data. 
+```
+uv sync
+uv run --with jupyter jupyter lab
+```
+Then open the notebook, and for the kernel, use "Existing Jupyter Server" with the URL that was printed in the terminal. It should be formatted as http://localhost:8888/lab?token=<token>.
+
+As a shortcut, we have uploaded the result of running this workflow to the cloud.
 ```
 cd SmartEM-Processing-Workflows/example_working_dir/meirovitch2025
 wget https://s3.us-east-1.amazonaws.com/bossdb-open-data/meirovitch2025/workflow_example_data/aligned_tensorstore.tar.gz
