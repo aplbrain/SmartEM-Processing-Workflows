@@ -1,6 +1,8 @@
 # SmartEM-Processing-Workflows
 
-A Dockerized, step-by-step processing pipeline designed to take electron microscopy (EM) images from SmartEM and transform them into connectome-ready outputs using a reproducible, modular, and scalable approach.
+A Dockerized, step-by-step processing pipeline designed to take electron microscopy (EM) images from SmartEM and transform them into connectome-ready outputs (e.g., segmentation, synapse detection) using a reproducible, modular, and scalable approach.
+
+SmartEM is a novel EM imaging approach which allows for intelligent, data-aware imaging of specimens. Please read [the paper](https://doi.org/10.1038/s41592-025-02929-3) for details on the method and visit [the BossDB project page](https://doi.org/10.60533/boss-2023-4w35) to view and download SmartEM datasets.
 
 ## Key Features
 
@@ -64,3 +66,10 @@ Each workflow will document:
 
 For questions or collaboration inquiries, please email hannah.martinez@jhuapl.edu, caitlyn.bishop@jhuapl.edu, or daniel.xenes@jhuapl.edu.
 
+## License
+See [LICENSE](LICENSE) for license information.
+
+## Acknowledgements
+This software was created by the Johns Hopkins University Applied Physics Laboratory and Harvard University, with funding supported by the NIH BRAIN Initiative under grant no. U01NS132158.
+
+© 2026 The Johns Hopkins University Applied Physics Laboratory LLC

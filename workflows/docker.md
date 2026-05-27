@@ -10,7 +10,7 @@ You will need:
 * A machine with a GPU 
 * Docker
 * uv
-* A working directory with unstitched, unaligned image tiles. Example data is provided in the meirovitch2025 entry in BossDB's cloud storage:
+* A working directory with unstitched, unaligned image tiles. Example data is provided in the meirovitch2025 entry in BossDB's cloud storage (530 MB):
 ```
 cd SmartEM-Processing-Workflows/example_working_dir/meirovitch2025
 wget https://s3.us-east-1.amazonaws.com/bossdb-open-data/meirovitch2025/workflow_example_data/tiles.tar.gz
