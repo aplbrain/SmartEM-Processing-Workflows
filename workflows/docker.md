@@ -12,7 +12,7 @@ You will need:
 * uv
 * A working directory with unstitched, unaligned image tiles
 
-To streamline the setup process, run `./docker-build.sh` in this directory to download tiles to `example_working_dir/meirovitch2025` (530 MB) and to build each Docker container.
+To streamline the setup process, run `./docker-setup.sh` in this directory to download tiles to `example_working_dir/meirovitch2025` (530 MB) and to build each Docker container.
 
 Briefly, each step in the workflow will require
 * Mounting the working directory so that results are persisted to disk
