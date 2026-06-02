@@ -72,4 +72,6 @@ See [LICENSE](LICENSE) for license information.
 ## Acknowledgements
 This software was created by the Johns Hopkins University Applied Physics Laboratory and Harvard University, with funding supported by the NIH BRAIN Initiative under grant no. U01NS132158.
 
+The views, opinions, and/or findings expressed are those of the author(s) and should not be interpreted as representing the official views or policies of the NIH.
+
 © 2026 The Johns Hopkins University Applied Physics Laboratory LLC
