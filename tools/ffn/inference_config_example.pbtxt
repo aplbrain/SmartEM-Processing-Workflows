@@ -1,13 +1,13 @@
 image {
-  hdf5: "/example_working_dir/meirovitch2025/image_volume.h5:raw"
+  hdf5: "/example_working_dir/meirovitch2025/image_volume_uint8.h5:raw"
 }
-image_mean: 118
-image_stddev: 40
+image_mean: 128
+image_stddev: 51
 checkpoint_interval: 1800
 seed_policy: "PolicyPeaks"
-model_checkpoint_path: "models/fib25/model.ckpt-27465036"
+model_checkpoint_path: "/example_working_dir/meirovitch2025/ffn_model/model.ckpt-2500000"
 model_name: "convstack_3d.ConvStack3DFFNModel"
-model_args: "{\"depth\": 12, \"fov_size\": [33, 33, 33], \"deltas\": [8, 8, 8]}"
+model_args: '{"depth": 12, "fov_size": [16, 16, 8], "deltas": [8, 8, 4]}'
 segmentation_output_dir: "/example_working_dir/meirovitch2025/ffn_results"
 inference_options {
   init_activation: 0.95
@@ -15,5 +15,5 @@ inference_options {
   move_threshold: 0.9
   min_boundary_dist { x: 1 y: 1 z: 1}
   segment_threshold: 0.6
-  min_segment_size: 1000
+  min_segment_size: 500
 }

@@ -27,7 +27,9 @@ RUN git clone https://github.com/google-research/connectomics.git \
     && pip install . \
     && cd ..
 
-RUN git clone https://github.com/aplbrain/ffn.git
+RUN git clone https://github.com/aplbrain/ffn.git \
+    && cd ffn \
+    && git checkout SmartEM-seg
 
 WORKDIR /ffn
 
