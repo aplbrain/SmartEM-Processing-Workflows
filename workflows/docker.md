@@ -10,23 +10,14 @@ You will need:
 * A machine with a GPU 
 * Docker
 * uv
-* A working directory with unstitched, unaligned image tiles. Example data is provided in the meirovitch2025 entry in BossDB's cloud storage:
-```
-cd SmartEM-Processing-Workflows/example_working_dir/meirovitch2025
-wget https://s3.us-east-1.amazonaws.com/bossdb-open-data/meirovitch2025/workflow_example_data/tiles.tar.gz
-tar -xvzf tiles.tar.gz
-```
+* A working directory with unstitched, unaligned image tiles
 
-Briefly, each step will require
-* Building the Docker container
+To streamline the setup process, run `./docker-setup.sh` in this directory to download tiles to `example_working_dir/meirovitch2025` (530 MB) and to build each Docker container.
+
+Briefly, each step in the workflow will require
 * Mounting the working directory so that results are persisted to disk
-* Running the commands as documented
+* Running the commands inside the Docker container as documented
 * Inspecting the output, adjusting configuration, and repeating as necessary
-
-There will be a few scripts and notebooks that can be run using uv, rather than Docker. Create the `.venv` to use these.
-```
-uv sync
-```
 
 Following is a step by step guide to complete the full workflow.
 
@@ -35,13 +26,7 @@ For FEABAS it is highly recommended to read the [FEABAS README](https://github.c
 
 First, create and populate the working directory. You will need a `stitch/` directory that contains the stitching coordinate files that point to your data (example data is available for download using the `wget` command above) and a `configs/` directory that contains the configurations. In this tutorial, we have created a working directory at `/example_working_dir/meirovitch2025` that is set up for you.
 
-Next, build the Docker container.
-```
-cd tools/feabas
-sudo docker build . -t feabas:latest
-```
-
-Finally, in [tools/feabas/README.md#Running](https://github.com/aplbrain/SmartEM-Processing-Workflows/tree/main/tools/feabas#running), we provide instructions for running each step in the stitching and alignment pipeline. We recommend moving to that page and coming back to this one when the aligned stack has been created. At two intermediate points in the pipeline flagged `--rendering`, the algorithm progress can be inspected. We recommend inspecting at each of these points and adjusting configurations as needed.
+Next, in [tools/feabas/README.md#Running](https://github.com/aplbrain/SmartEM-Processing-Workflows/tree/main/tools/feabas#running), we provide instructions for running each step in the stitching and alignment pipeline. We recommend moving to that page and coming back to this one when the aligned stack has been created. At two intermediate points in the pipeline flagged `--rendering`, the algorithm progress can be inspected. We recommend inspecting at each of these points and adjusting configurations as needed.
 
 The output of FEABAS will be a folder called `aligned_tensorstore` which contains a precomputed volume of stitched and aligned data. Use `tools/feabas/view_data.ipynb` to examine it before moving on to segmentation:
 ```

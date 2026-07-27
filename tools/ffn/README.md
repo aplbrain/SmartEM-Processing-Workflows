@@ -1,6 +1,6 @@
 # Running FFN on Docker
 
-This Dockerfile is based on the [APL fork](https://github.com/aplbrain/ffn) of Google's flood-filling networks segmentation algorithm.
+This Dockerfile is based on the [JHU/APL fork](https://github.com/aplbrain/ffn) of Google's flood-filling networks segmentation algorithm.
 
 ## Requirements
 * Hardware or cloud resources with one or more Nvidia GPUs
@@ -25,11 +25,7 @@ nvidia-ctk runtime configure --runtime=docker
 systemctl restart docker
 ```
 
-4. Pull the Docker container.
-```
-docker pull public.ecr.aws/jhuapl-bossdb/ffn:latest
-```
-Alternatively, build it from source.
+4. Build the Docker image from source.
 ```
 docker build -t ffn:latest .
 ```

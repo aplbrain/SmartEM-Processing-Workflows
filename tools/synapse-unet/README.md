@@ -58,3 +58,7 @@ uv sync
 uv run --with jupyter jupyter lab
 ```
 Then open the notebook, and for the kernel, use "Existing Jupyter Server" with the URL that was printed in the terminal. It should be formatted as http://localhost:8888/lab?token=<token>.
+
+## Troubleshooting
+
+The Dockerfile installs Torch and Torchvision versions that align with Cuda 11.8. If the first line printed does not include `device: cuda`, you may need to troubleshoot the container's versions to align with your host machine's drivers.
