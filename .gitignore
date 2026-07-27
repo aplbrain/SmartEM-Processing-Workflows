@@ -206,4 +206,11 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-example_working_dir/
+# Keep downloaded example data out of Git while allowing the curated FFN
+# artifacts below to be versioned with the existing tracked example files.
+example_working_dir/*
+!example_working_dir/meirovitch2025/
+example_working_dir/meirovitch2025/*
+!example_working_dir/meirovitch2025/image_volume_legacy.h5
+!example_working_dir/meirovitch2025/ffn_results/
+!example_working_dir/meirovitch2025/ffn_results/**

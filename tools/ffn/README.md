@@ -2,6 +2,10 @@
 
 This Dockerfile is based on the [JHU/APL fork](https://github.com/aplbrain/ffn) of Google's flood-filling networks segmentation algorithm.
 
+The supplied configuration uses a Karlupia mouse-EM checkpoint and inference
+parameters tuned against the labeled SmartEM example. The included reference
+output was generated with the same configuration.
+
 ## Requirements
 * Hardware or cloud resources with one or more Nvidia GPUs
 * Docker
@@ -30,27 +34,70 @@ systemctl restart docker
 docker build -t ffn:latest .
 ```
 
-5. Copy images to a working directory. We have provided an example image at `example_working_dir/meirovitch2025/image_volume.h5`.
+5. Copy images and the checkpoint to a working directory. The example includes
+   canonical image/label volumes and the legacy-axis uint8 input used by the
+   tuned model. Place the checkpoint shards at
+   `example_working_dir/meirovitch2025/ffn_model/model.ckpt-2500000*`.
 
 ## Training
 Coming soon
 
 ## Inference
-1. Write a configuration file. We have provided an example at `inference_config_example.pbtxt`. You will at minimum need to change the paths within this file to point to those in your working directory. We recommend mounting the working directory to the root of the Docker container (as shown in the following command) and have done so in our example.
+1. Use `inference_config_example.pbtxt`. It is configured for the included
+   `image_volume_legacy.h5` and checkpoint location. The important tuned values
+   are an odd `[17, 17, 9]` FOV, movement threshold `0.90`, segment threshold
+   `0.40`, disconnectedness threshold `-1`, and minimum segment size `250`.
 
     More examples are found in the [ffn configs directory](https://github.com/aplbrain/ffn/tree/master/configs) and guidance is found in the [ffn docs](https://github.com/aplbrain/ffn/blob/master/doc/manual.md#segmentation-inference).
 
-2. Run inference on a single block.
-```
+2. From the repository root, run inference over the complete example volume.
+   The legacy input has array shape `700x700x94`, so its valid FFN XYZ bounding
+   box is `94x700x700`.
+
+```bash
 docker run --rm \
---gpus all \
--v /path/to/working_dir:/working_dir \
-ffn \
-python run_inference.py   --inference_request="$(cat inference_config_example.pbtxt)"   --bounding_box 'start { x:0 y:0 z:0 } size { x:250 y:250 z:250 }'
+  --gpus all \
+  -v "$PWD/example_working_dir:/example_working_dir" \
+  ffn:latest \
+  python run_inference.py \
+    --inference_request="$(cat tools/ffn/inference_config_example.pbtxt)" \
+    --bounding_box='start { x:0 y:0 z:0 } size { x:94 y:700 z:700 }'
 ```
 
-3. Use the provided notebook `view_data.ipynb` to inspect the results.
+The result is written to
+`example_working_dir/meirovitch2025/ffn_results/0/0/seg-0_0_0.npz`.
+The supplied result is in legacy XYZ array order; the evaluator and viewer
+transpose it back to canonical ZYX.
+
+## Evaluation
+
+The label HDF5 stores instance IDs as three uint8 color channels. The evaluator
+packs these channels into IDs, ignores zero-valued ground truth, and calculates
+adapted Rand error/precision/recall, VI split/merge, foreground coverage, and
+covered-only variants. From the repository root, run:
+
+```bash
+uv run python tools/ffn/evaluate_smartem.py \
+  'example_working_dir/meirovitch2025/ffn_results/**/seg-*.npz' \
+  --prediction-axes=2,1,0 \
+  --setting=axis-legacy_move-0.90_seg-0.40_disco--1_min-250 \
+  --csv=example_working_dir/meirovitch2025/ffn_results/metrics.csv
 ```
+
+The included tuned result has adapted Rand error `0.87875`, foreground
+coverage `0.69843`, VI split `1.91335`, and VI merge `3.51740`.
+
+![EM, ground-truth labels, and tuned FFN segmentation comparison](../../example_working_dir/meirovitch2025/ffn_results/em_labels_seg_comparison.png)
+
+The comparison uses slice 82, whose `69.8%` foreground coverage closely
+matches the full-volume coverage. White outlines mark instance boundaries;
+zero-valued unlabeled regions remain transparent over the EM image.
+
+## Visualization
+
+Use the provided notebook `view_data.ipynb` to inspect the result:
+
+```bash
 uv sync
 uv run --with jupyter jupyter lab
 ```

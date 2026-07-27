@@ -14,8 +14,17 @@ For the broader pipeline overview, see the repository [README](../../README.md) 
   Stitch coordinate files for five z slices. These files expect the image tiles to exist under `/meirovitch2025/tiles/...` inside the FEABAS container.
 - `image_volume.h5`
   Example EM volume for FFN and Synapse U-Net inference.
+- `image_volume_uint8.h5`
+  Canonical ZYX uint8 EM volume used to prepare the FFN input.
+- `image_volume_legacy.h5`
+  XYZ-ordered uint8 EM volume used by the tuned legacy-axis FFN checkpoint.
 - `label_volume.h5`
-  Example segmentation volume for local experimentation.
+  RGB-encoded instance labels used to score FFN output.
+- `ffn_results/`
+  Tuned FFN segmentation and its adapted Rand, variation-of-information, and
+  coverage metrics, plus a PNG comparison against the EM and ground truth.
+  See [`tools/ffn/README.md`](../../tools/ffn/README.md) for reproduction and
+  scoring commands.
 - `synapse_unet_configs/`
   Pretrained Synapse U-Net weights plus example YAML configs.
 
@@ -37,4 +46,4 @@ cd SmartEM-Processing-Workflows/example_working_dir/meirovitch2025
 wget https://s3.us-east-1.amazonaws.com/bossdb-open-data/meirovitch2025/workflow_example_data/aligned_tensorstore.tar.gz
 tar -xvzf aligned_tensorstore.tar.gz
 ```
-This will download a precomputed volume of size 7168x6272x5 voxels at resolution 4x4x30 nm. 
+This will download a precomputed volume of size 7168x6272x5 voxels at resolution 4x4x30 nm.
