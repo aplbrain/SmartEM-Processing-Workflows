@@ -13,11 +13,11 @@ For the broader pipeline overview, see the repository [README](../../README.md) 
 - `stitch/stitch_coord/`
   Stitch coordinate files for five z slices. These files expect the image tiles to exist under `/meirovitch2025/tiles/...` inside the FEABAS container.
 - `image_volume.h5`
-  Example EM volume for FFN and Synapse U-Net inference.
+  Example EM volume for Synapse U-Net inference.
 - `image_volume_uint8.h5`
   Canonical ZYX uint8 EM volume used to prepare the FFN input.
 - `image_volume_legacy.h5`
-  XYZ-ordered uint8 EM volume used by the tuned legacy-axis FFN checkpoint.
+  XYZ-ordered and transposed uint8 EM volume used by the tuned legacy-axis FFN checkpoint. Used for testing FFN container as a standalone.
 - `label_volume.h5`
   RGB-encoded instance labels used to score FFN output.
 - `ffn_results/`
