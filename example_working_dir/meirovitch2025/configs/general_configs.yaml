@@ -1,0 +1,14 @@
+working_directory: /meirovitch2025   # project specific working directory
+cpu_budget: 16      # CPU cores to use (estimated target only, no hard control)
+parallel_framework: process
+
+full_resolution: 4  # in nanometers
+section_thickness: 30 # in nanometers
+
+# logging configs
+logging_directory: null # directory to save log files. if set to null, default to working_directory/logs
+logfile_level: WARNING  # DEBUG, INFO, WARNING, ERROR or NONE
+console_level: INFO
+archive_level: INFO
+
+tensorstore_timeout: null # if a call to tensorstore hangs beyond this value in seconds, raise TimeoutError

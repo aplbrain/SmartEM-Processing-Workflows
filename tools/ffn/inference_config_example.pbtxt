@@ -1,0 +1,21 @@
+image {
+  # Legacy XYZ array order matches the orientation used to train this model.
+  hdf5: "/example_working_dir/meirovitch2025/image_volume_legacy.h5:raw"
+}
+image_mean: 138.96332215022815
+image_stddev: 51.447862638637915
+checkpoint_interval: 1800
+seed_policy: "PolicyPeaks"
+model_checkpoint_path: "/example_working_dir/meirovitch2025/ffn_model/model.ckpt-2500000"
+model_name: "convstack_3d.ConvStack3DFFNModel"
+model_args: '{"depth": 12, "fov_size": [17, 17, 9], "deltas": [8, 8, 4]}'
+segmentation_output_dir: "/example_working_dir/meirovitch2025/ffn_results"
+inference_options {
+  init_activation: 0.95
+  pad_value: 0.05
+  move_threshold: 0.90
+  disco_seed_threshold: -1
+  min_boundary_dist { x: 1 y: 1 z: 1 }
+  segment_threshold: 0.40
+  min_segment_size: 250
+}
