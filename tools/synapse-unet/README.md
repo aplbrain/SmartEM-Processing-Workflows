@@ -7,7 +7,7 @@ This Dockerfile is based on PyTorch Connectomics, commit [f29a6bf](https://githu
 * Docker
 * A working directory
 * An aligned EM image volume, and labeled training data
-  * PyTorch Connectomics expects a 3D H5 file
+  * PyTorch Connectomics expects a 3D H5 file containing an image dataset 'raw' with axes in ZYX order
   * In `example_working_dir/meirovitch2025`, we provide a pre-downloaded test volume
   * We also provide a script `download_training_data.py` for downloading a precomputed volume and converting to the correct format
 
