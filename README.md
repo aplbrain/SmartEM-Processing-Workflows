@@ -36,31 +36,16 @@ cd SmartEm-Processing-Workflows
 
 ### Build Docker Images
 
-Navigate to a specific Dockerfile and build the image:
+Build all the images:
 
 ```
-cd dockerfiles/<example-step>
-docker build -t smartem/<example-step>:latest .
+./workflows/docker-setup.sh
 ```
 
 
 ## Running Workflows
 
-Workflows are defined in the `workflows/` directory and are responsible for chaining together multiple Dockerized steps.
-
-Example:
-
-```
-cd workflows/<example-workflow>
-./run.sh
-```
-
-Each workflow will document:
-
-* Required inputs
-* Expected outputs
-* Configuration parameters
-
+Workflows are defined in the `workflows/` directory and are responsible for chaining together multiple Dockerized steps. Steps can also be run standalone from the `tools/` directory.
 
 ## Contact
 
