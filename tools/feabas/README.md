@@ -4,12 +4,12 @@ This directory containerizes [FEABAS](https://github.com/YuelongWu/feabas), the 
 
 ## Requirements
 * Docker
-* Tiled images in PNG or TIF format, numbered with leading zeros
+* Tiled images in PNG or TIF format
 
 ## Setup
 All the setup that is required is to create a working directory which contains a specific directory structure with configuration files and your tiled images. 
 
-We recommend following the instructions in the [FEABAS readme](https://github.com/YuelongWu/feabas?tab=readme-ov-file#preparation) to determine how to structure the working directory and how to customize the configuration files (default ones are included in this directory). Generating the stitch coordinate files will likely require the most work. You should create the working directory on the local machine and mount it into the container at runtime so that the results are persisted.
+We recommend following the instructions in the [FEABAS readme](https://github.com/YuelongWu/feabas?tab=readme-ov-file#preparation) to determine how to structure the working directory and how to customize the configuration files (default ones are included in this directory). Generating the stitch coordinate files will likely require the most work. You should create the working directory on the local machine and mount it into the container at runtime so that the results are persisted. Be sure to generate the files so that they are in order when sorted alphabetically, as this is the order in which they will be stacked.
 
 In `example_working_dir/meirovitch2025` we have set up an example which already includes the `configs/` that were used for the SmartEM paper and `stitch/` directory for a subset of SmartEM data. However, the subsetted data (530 MB) still remains to be downloaded. 
 
