@@ -4,7 +4,7 @@ This directory containerizes [FEABAS](https://github.com/YuelongWu/feabas), the 
 
 ## Requirements
 * Docker
-* Tiled images in PNG or TIF format
+* Tiled images in PNG or TIF format, numbered with leading zeros
 
 ## Setup
 All the setup that is required is to create a working directory which contains a specific directory structure with configuration files and your tiled images. 
